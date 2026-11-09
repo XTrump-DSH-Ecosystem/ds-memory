@@ -1,0 +1,12 @@
+node_modules/
+/state/
+.env
+config.jsonc
+*.log
+.arts/
+.screenshots/
+.codeartsdoer/
+models/bge-small-zh-v1.5-onnx/config.json
+models/bge-small-zh-v1.5-onnx/tokenizer.json
+models/bge-small-zh-v1.5-onnx/tokenizer_config.json
+models/bge-small-zh-v1.5-onnx/onnx/

@@ -1,0 +1,18 @@
+{
+  "name": "send-response-invalid-missing-failed",
+  "kind": "send-response",
+  "description": "ok:false 但缺少 failed，应判非法响应",
+  "payload": {
+    "ok": false,
+    "sent": []
+  },
+  "expect": {
+    "status": 200,
+    "headers": {},
+    "requestCount": 3,
+    "outcome": "ambiguous_failure",
+    "sentIndexes": [],
+    "failedIndexes": [],
+    "retryable": false
+  }
+}

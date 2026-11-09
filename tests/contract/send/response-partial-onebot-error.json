@@ -1,0 +1,39 @@
+{
+  "name": "send-response-partial-onebot-error",
+  "kind": "send-response",
+  "description": "首失败为非 429 的 timeout，HTTP 200 保留 sent 前缀；尾部 not_attempted 不重试",
+  "payload": {
+    "ok": false,
+    "sent": [
+      {
+        "messageId": "7001"
+      }
+    ],
+    "failed": [
+      {
+        "index": 1,
+        "reason": "timeout"
+      },
+      {
+        "index": 2,
+        "reason": "not_attempted"
+      }
+    ]
+  },
+  "expect": {
+    "status": 200,
+    "headers": {},
+    "requestCount": 3,
+    "outcome": "partial",
+    "sentIndexes": [
+      0
+    ],
+    "failedIndexes": [
+      1,
+      2
+    ],
+    "retryable": false,
+    "retryIndexes": [],
+    "reason": "timeout"
+  }
+}

@@ -1,0 +1,137 @@
+// xds-memory 示例配置。复制为 config.jsonc 后按需修改。
+// 本项目的注释剥离器支持 // 与 /* */，不支持尾逗号。
+{
+  "provider": {
+    "default": "deepseek",
+    "deepseek": {
+      // 官方 REST API 的根地址（注意字符串里的 // 不是注释）
+      "baseUrl": "https://api.deepseek.com",
+      "model": "deepseek-flash",
+      "apiKeyEnv": "DEEPSEEK_API_KEY",
+      "timeoutMs": 120000
+    },
+    "dsh": {
+      "autoDiscover": true,
+      "profile": "desktop"
+    }
+  },
+  "memory": {
+    "facts": {
+      "injectMax": 30,
+      "injectMaxChars": 900,
+      "halfLifeDays": 45,
+      "archiveThreshold": 1.0,
+      "autoReview": true
+    },
+    "recall": {
+      // bigram：默认，零额外依赖；embedding：进程内 BGE + 词法证据门。
+      // embedding 首次检索才加载模型，失败会告警一次并永久回退 bigram。
+      "engine": "bigram",
+      "trigger": "auto",
+      "budgetChars": 600,
+      "budgetItems": 5,
+      "embedding": {
+        // 相对路径按本配置文件所在目录解析；也可填绝对路径。
+        // 仓库不提交模型二进制，安装方式见 models/bge-small-zh-v1.5-onnx/README.md。
+        "modelDir": "models/bge-small-zh-v1.5-onnx",
+        "dtype": "q8",
+        "device": "cpu",
+        "maxCandidates": 20,
+        "batchSize": 8
+      }
+    },
+    "selfNote": {
+      "max": 40,
+      "bootstrapLimit": 20
+    }
+  },
+  "agent": {
+    "compaction": {
+      "enabled": true,
+      "idleMs": 1800000,
+      "thresholdTokens": 24000,
+      "minTurns": 6
+    }
+  },
+  "codeBridge": {
+    // 关闭时不接线 code 命令，也不会轮询 code-bridge。
+    "enabled": false,
+    // 空 = 平台默认 runtimeDir 下的 code-bridge.endpoint.json / code-bridge.token。
+    // 相对路径按本配置文件目录解析；token 只从 tokenFile 读取，绝不写进配置。
+    "endpointFile": "",
+    "tokenFile": "",
+    "requestTimeoutMs": 5000,
+    "pollIntervalMs": 2000,
+    "summaryMaxChars": 1200
+  },
+  "webSearch": {
+    // 默认关闭。设为 true 后，只有 live owner 私聊且 Provider 支持 tools 时，
+    // 才会向模型注入 web_search / web_fetch；由模型按问题需要自主决定是否调用。
+    "enabled": false,
+    // 传给 open-websearch 的搜索引擎，按顺序尝试；中文内容默认 baidu + sogou。
+    // 百度被安全验证页拦截时，搜狗仍可返回中文资讯。
+    // 可选：baidu/bing/sogou/duckduckgo/exa/brave/startpage/csdn/juejin/linuxdo/hackernews。
+    "engines": ["baidu", "sogou"],
+    // 空 = qq.runtimeDir 下的 open-websearch.endpoint.json。
+    // 相对路径按本配置文件目录解析；绝对路径原样使用。
+    "endpointFile": "",
+    // 首选 DeepSeek Search API（直接请求，不额外消耗模型轮次）。
+    // 需要 DEEPSEEK_API_KEY；失败或未配置凭据时自动回退到 open-websearch。
+    // 网页正文仍由本地 open-websearch 抓取，保留 DNS/SSRF 控制；
+    // 只有未配置 open-websearch 兜底时才使用 DeepSeek Fetch API。
+    "deepseek": {
+      "enabled": true,
+      "baseUrl": "https://api.deepseek.com/v1/tools",
+      "apiKeyEnv": "DEEPSEEK_API_KEY",
+      "count": 10,
+      "timeoutMs": 30000
+    }
+  },
+  "qq": {
+    // QQ 默认关闭；enabled=true 时 hookToken 不能为空、ownerQQ 不能为 0。
+    "enabled": false,
+    "hookHost": "127.0.0.1",
+    // hookPort 是首选端口；被占用或无可绑定权限时自动回退到 0（系统分配），
+    // 并通过 runtimeDir 下的 endpoint 文件（不含 token）供对端发现。
+    "hookPort": 985,
+    "hookToken": "",
+    // 空 = 端点发现模式；显式 URL 覆盖优先。
+    "gatewayUrl": "",
+    // 运行时目录默认按平台推导：Windows %LOCALAPPDATA%\DSH\runtime；
+    // 其他平台 $XDG_RUNTIME_DIR/dsh，缺失时 ~/.dsh/runtime。
+    // 需要覆盖时取消下一行注释并改成绝对路径：
+    // "runtimeDir": "D:/DSH/runtime",
+    "batchWindowMs": 2000,
+    "batchMaxMessages": 12,
+    "batchMessageMaxChars": 300,
+    "batchMaxChars": 4000,
+    "dedupeTtlMs": 600000,
+    "ownerQQ": 0,
+    "allowGroups": [],
+    "denyPrivate": [],
+    "denyGroups": [],
+    // 普通群成员 @/引用机器人可触发回复；owner 不受此限流影响。
+    // 普通成员每次只发一条；同一群会话最小间隔 3 秒、每分钟最多 6 条。
+    "groupMemberReply": {
+      "enabled": true,
+      "minIntervalMs": 3000,
+      "maxPerMinute": 6
+    },
+    // 仅 ownerQQ 的消息可唤醒模型：群聊白名单只放行「持久化」，
+    // mention 下普通群友仅在 @/引用机器人时进入模型，其余消息只持久化。
+    "groupWake": "mention",
+    "send": {
+      "maxPerTurn": 3,
+      "retryDelaysMs": [2000, 10000],
+      "sendTimeoutMs": 10000
+    },
+    "healthIntervalMs": 30000,
+    // deprecated：仅保留解析兼容，P2 不消费；彻底删除另立小任务。
+    "snowluma": {
+      "httpUrl": "http://127.0.0.1:3000",
+      "wsUrl": "ws://127.0.0.1:3001",
+      "homeDir": ""
+    }
+  },
+  "stateDir": "./state"
+}

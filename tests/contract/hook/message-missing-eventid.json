@@ -1,0 +1,27 @@
+{
+  "name": "hook-message-missing-eventid",
+  "kind": "hook-request",
+  "description": "缺失 eventId，应 400",
+  "payload": {
+    "v": 1,
+    "at": 1750000000000,
+    "source": {
+      "kind": "private",
+      "id": "123456789",
+      "groupName": null
+    },
+    "sender": {
+      "qqId": "987654321",
+      "nickname": "小鲸鱼他爹"
+    },
+    "messageId": "3590",
+    "text": "没有 eventId",
+    "isAtBot": false,
+    "quote": null,
+    "media": [],
+    "poke": null
+  },
+  "expect": {
+    "status": 400
+  }
+}

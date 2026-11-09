@@ -1,0 +1,18 @@
+{
+  "name": "endpoint-invalid-non-loopback",
+  "kind": "endpoint",
+  "description": "host 非回环，应判非法",
+  "payload": {
+    "v": 1,
+    "name": "ds-memory",
+    "host": "192.168.1.10",
+    "port": 985,
+    "pid": 12345,
+    "startedAt": 1750000000000,
+    "instanceId": "33333333-3333-4333-8333-333333333333"
+  },
+  "expect": {
+    "valid": false,
+    "reason": "non_loopback_host"
+  }
+}

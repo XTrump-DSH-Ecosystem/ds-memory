@@ -1,0 +1,31 @@
+{
+  "name": "xds-memory",
+  "version": "0.1.0",
+  "private": true,
+  "description": "有记忆的私人 DeepSeek 助理（QQ + CLI）",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node src/main.ts",
+    "start": "node src/main.ts",
+    "serve": "node src/main.ts --serve",
+    "contract:check": "node scripts/contract-check.mjs",
+    "eval:recall": "node tests/eval/run-recall.ts",
+    "eval:hybrid": "node tests/eval/run-hybrid-eval.ts",
+    "eval:hybrid:prod": "node tests/eval/run-hybrid-prod.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "4.3.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

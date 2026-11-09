@@ -1,0 +1,251 @@
+{
+  "meta": {
+    "description": "P3-4 constructed holdout for production hybrid smoke; not an independently blind benchmark",
+    "deidentified": true,
+    "ownerQQ": 10001,
+    "now": 1762358400000
+  },
+  "corpus": [
+    {
+      "id": "h1",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "我把旧显示器换成了 27 寸 4K 屏，接在 4090 上",
+      "tOffsetDays": -20
+    },
+    {
+      "id": "h2",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "搬家后书房朝北，下午光线有点暗",
+      "tOffsetDays": -15
+    },
+    {
+      "id": "h3",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "咖啡机是德龙 E95，清洗要按住蒸汽键五秒",
+      "tOffsetDays": -12
+    },
+    {
+      "id": "h4",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "每周三晚上八点和小林打羽毛球",
+      "tOffsetDays": -10
+    },
+    {
+      "id": "h5",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "猫叫团子，对鸡肉过敏，只能吃鸭肉粮",
+      "tOffsetDays": -8
+    },
+    {
+      "id": "h6",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "下个月去成都出差，住在春熙路附近",
+      "tOffsetDays": -6
+    },
+    {
+      "id": "h7",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "车是混动凯美瑞，保养间隔一万公里",
+      "tOffsetDays": -5
+    },
+    {
+      "id": "h8",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "我不吃香菜，但能接受芹菜",
+      "tOffsetDays": -4
+    },
+    {
+      "id": "h9",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "Switch 账号叫 xavier_trump，好友码 SW-1234-5678-9012",
+      "tOffsetDays": -3
+    },
+    {
+      "id": "h10",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "阳台的绿萝每周浇一次水，夏天可以两次",
+      "tOffsetDays": -2
+    },
+    {
+      "id": "h11",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "去年双十一买的那台投影仪是极米 H6",
+      "tOffsetDays": -30
+    },
+    {
+      "id": "h12",
+      "sessionKey": "cli:owner",
+      "role": "user",
+      "text": "我的常用邮箱是 xavier@example.com",
+      "tOffsetDays": -1
+    },
+    {
+      "id": "hg1",
+      "sessionKey": "group:10002",
+      "role": "user",
+      "text": "群里说周五晚上八点开黑，用 Discord",
+      "senderQqId": "10001",
+      "modelEligible": true,
+      "tOffsetDays": -7
+    },
+    {
+      "id": "hg2",
+      "sessionKey": "group:10002",
+      "role": "user",
+      "text": "群文件里放了上次聚会的照片",
+      "senderQqId": "10001",
+      "modelEligible": true,
+      "tOffsetDays": -9
+    },
+    {
+      "id": "hm1",
+      "sessionKey": "group:10002",
+      "role": "user",
+      "text": "群友说他的 4090 是假的",
+      "senderQqId": "222333444",
+      "modelEligible": false,
+      "tOffsetDays": -7
+    },
+    {
+      "id": "hp1",
+      "sessionKey": "private:999999",
+      "role": "user",
+      "text": "陌生人的秘密 4090",
+      "senderQqId": "999999",
+      "modelEligible": false,
+      "tOffsetDays": -7
+    }
+  ],
+  "cases": [
+    {
+      "id": "h01",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "之前换的显示器是多大尺寸？",
+      "expected": ["h1"]
+    },
+    {
+      "id": "h02",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "书房下午是不是很暗？",
+      "expected": ["h2"]
+    },
+    {
+      "id": "h03",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "咖啡机怎么清洗？",
+      "expected": ["h3"]
+    },
+    {
+      "id": "h04",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "哪天晚上打羽毛球？",
+      "expected": ["h4"]
+    },
+    {
+      "id": "h05",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "团子能吃什么肉？",
+      "expected": ["h5"]
+    },
+    {
+      "id": "h06",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "成都出差住哪儿？",
+      "expected": ["h6"]
+    },
+    {
+      "id": "h07",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "车多久保养一次？",
+      "expected": ["h7"]
+    },
+    {
+      "id": "h08",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "我吃不吃香菜？",
+      "expected": ["h8"]
+    },
+    {
+      "id": "h09",
+      "category": "hard-anchor",
+      "sessionKey": "cli:owner",
+      "query": "Switch 好友码是多少？",
+      "expected": ["h9"]
+    },
+    {
+      "id": "h10",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "绿萝多久浇一次水？",
+      "expected": ["h10"]
+    },
+    {
+      "id": "h11",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "双十一买的投影仪什么型号？",
+      "expected": ["h11"]
+    },
+    {
+      "id": "h12",
+      "category": "paraphrase",
+      "sessionKey": "cli:owner",
+      "query": "我的邮箱是什么？",
+      "expected": ["h12"]
+    },
+    {
+      "id": "h13",
+      "category": "group",
+      "sessionKey": "group:10002",
+      "query": "周五晚上几点开黑？",
+      "expected": ["hg1"]
+    },
+    {
+      "id": "h14",
+      "category": "negative",
+      "sessionKey": "cli:owner",
+      "query": "你还记得我的护照号吗？",
+      "expected": []
+    },
+    {
+      "id": "h15",
+      "category": "negative",
+      "sessionKey": "cli:owner",
+      "query": "下次要买什么牌子的洗衣液？",
+      "expected": []
+    },
+    {
+      "id": "h16",
+      "category": "isolation",
+      "sessionKey": "group:10002",
+      "query": "群友的 4090 是真的吗？",
+      "expected": []
+    },
+    {
+      "id": "h17",
+      "category": "isolation",
+      "sessionKey": "private:999999",
+      "query": "陌生人的 4090 呢？",
+      "expected": []
+    }
+  ]
+}

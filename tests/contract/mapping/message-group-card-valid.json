@@ -1,0 +1,86 @@
+{
+  "name": "message-group-card-valid",
+  "kind": "mapping-pair",
+  "description": "群消息 reply + get_msg；sender.card 与 quote.fromName 均按 card-first，at 使用 receivedAt",
+  "payload": {
+    "selfQqId": "10001",
+    "receivedAt": 1750000005333,
+    "event": {
+      "time": 1750000005,
+      "self_id": 10001,
+      "post_type": "message",
+      "message_type": "group",
+      "sub_type": "normal",
+      "message_id": 3593,
+      "group_id": 123456789,
+      "user_id": 987654321,
+      "message": [
+        {
+          "type": "reply",
+          "data": {
+            "id": "3571"
+          }
+        },
+        {
+          "type": "text",
+          "data": {
+            "text": "收到"
+          }
+        }
+      ],
+      "raw_message": "[CQ:reply,id=3571]收到",
+      "sender": {
+        "user_id": 987654321,
+        "nickname": "群友",
+        "card": "群名片"
+      }
+    },
+    "getMsg": [
+      {
+        "messageId": "3571",
+        "data": {
+          "message_id": 3571,
+          "sender": {
+            "user_id": 55555,
+            "nickname": "被引用者昵称",
+            "card": "被引用者名片"
+          },
+          "message": [
+            {
+              "type": "text",
+              "data": {
+                "text": "被引用的原文"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "expect": {
+    "ok": true,
+    "hook": {
+      "v": 1,
+      "eventId": "evt:10001:message:3593",
+      "at": 1750000005333,
+      "source": {
+        "kind": "group",
+        "id": "123456789",
+        "groupName": null
+      },
+      "sender": {
+        "qqId": "987654321",
+        "nickname": "群名片"
+      },
+      "messageId": "3593",
+      "text": "收到",
+      "isAtBot": false,
+      "quote": {
+        "text": "被引用的原文",
+        "fromName": "被引用者名片"
+      },
+      "media": [],
+      "poke": null
+    }
+  }
+}

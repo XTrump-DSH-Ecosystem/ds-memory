@@ -1,0 +1,17 @@
+{
+  "name": "endpoint-valid-qq-gateway",
+  "kind": "endpoint",
+  "description": "合法 qq-gateway 端点文件",
+  "payload": {
+    "v": 1,
+    "name": "qq-gateway",
+    "host": "127.0.0.1",
+    "port": 803,
+    "pid": 23456,
+    "startedAt": 1750000000000,
+    "instanceId": "22222222-2222-4222-8222-222222222222"
+  },
+  "expect": {
+    "valid": true
+  }
+}

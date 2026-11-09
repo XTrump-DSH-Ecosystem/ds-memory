@@ -1,0 +1,46 @@
+{
+  "name": "send-response-partial",
+  "kind": "send-response",
+  "description": "3 条中第 0 条成功，第 1 条 429，第 2 条未尝试；只重试 1/2",
+  "payload": {
+    "ok": false,
+    "sent": [
+      {
+        "messageId": "7001"
+      }
+    ],
+    "failed": [
+      {
+        "index": 1,
+        "reason": "rate_limited"
+      },
+      {
+        "index": 2,
+        "reason": "not_attempted"
+      }
+    ]
+  },
+  "expect": {
+    "status": 429,
+    "headers": {
+      "X-Retry-After-Ms": "2000"
+    },
+    "requestCount": 3,
+    "outcome": "partial",
+    "sentIndexes": [
+      0
+    ],
+    "failedIndexes": [
+      1,
+      2
+    ],
+    "retryable": true,
+    "retryIndexes": [
+      1,
+      2
+    ],
+    "retryAfterMs": 2000,
+    "retryReplyToMessageId": null,
+    "reason": "rate_limited"
+  }
+}

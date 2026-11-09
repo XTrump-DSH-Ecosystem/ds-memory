@@ -1,0 +1,45 @@
+{
+  "name": "send-response-all-failed-rate-limited",
+  "kind": "send-response",
+  "description": "全部未发送，首条 429；重试子集从 0 到末尾",
+  "payload": {
+    "ok": false,
+    "sent": [],
+    "failed": [
+      {
+        "index": 0,
+        "reason": "rate_limited"
+      },
+      {
+        "index": 1,
+        "reason": "not_attempted"
+      },
+      {
+        "index": 2,
+        "reason": "not_attempted"
+      }
+    ]
+  },
+  "expect": {
+    "status": 429,
+    "headers": {
+      "X-Retry-After-Ms": "30000"
+    },
+    "requestCount": 3,
+    "outcome": "none_sent",
+    "sentIndexes": [],
+    "failedIndexes": [
+      0,
+      1,
+      2
+    ],
+    "retryable": true,
+    "retryIndexes": [
+      0,
+      1,
+      2
+    ],
+    "retryAfterMs": 30000,
+    "reason": "rate_limited"
+  }
+}

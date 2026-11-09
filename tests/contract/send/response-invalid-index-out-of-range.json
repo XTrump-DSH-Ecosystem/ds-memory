@@ -1,0 +1,24 @@
+{
+  "name": "send-response-invalid-index-out-of-range",
+  "kind": "send-response",
+  "description": "failed.index 越界（请求 3 条，index 5），应判非法响应",
+  "payload": {
+    "ok": false,
+    "sent": [],
+    "failed": [
+      {
+        "index": 5,
+        "reason": "rate_limited"
+      }
+    ]
+  },
+  "expect": {
+    "status": 200,
+    "headers": {},
+    "requestCount": 3,
+    "outcome": "ambiguous_failure",
+    "sentIndexes": [],
+    "failedIndexes": [],
+    "retryable": false
+  }
+}

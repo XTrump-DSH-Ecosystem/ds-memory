@@ -1,0 +1,19 @@
+{
+  "name": "send-request-empty",
+  "kind": "send-request",
+  "description": "messages 为空，网关应拒绝为 400",
+  "payload": {
+    "v": 1,
+    "target": {
+      "kind": "private",
+      "id": "123456789"
+    },
+    "messages": [],
+    "replyToMessageId": null,
+    "reason": "reply"
+  },
+  "expect": {
+    "requestCount": 0,
+    "status": 400
+  }
+}

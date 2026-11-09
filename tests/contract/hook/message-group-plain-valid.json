@@ -1,0 +1,31 @@
+{
+  "name": "hook-message-group-plain-valid",
+  "kind": "hook-request",
+  "description": "合法群消息，未 @ 机器人；应只保存（stored_only），不唤醒",
+  "payload": {
+    "v": 1,
+    "eventId": "evt:10001:message:9002",
+    "at": 1750000002000,
+    "source": {
+      "kind": "group",
+      "id": "555000111",
+      "groupName": "三人小群"
+    },
+    "sender": {
+      "qqId": "333444555",
+      "nickname": "李四"
+    },
+    "messageId": "9002",
+    "text": "今天吃什么",
+    "isAtBot": false,
+    "quote": null,
+    "media": [],
+    "poke": null
+  },
+  "expect": {
+    "status": 200,
+    "body": {
+      "ok": true
+    }
+  }
+}

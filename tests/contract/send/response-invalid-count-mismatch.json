@@ -1,0 +1,28 @@
+{
+  "name": "send-response-invalid-count-mismatch",
+  "kind": "send-response",
+  "description": "请求 3 条，sent 1 + failed 1 = 2，数量不符，应判非法响应",
+  "payload": {
+    "ok": false,
+    "sent": [
+      {
+        "messageId": "7001"
+      }
+    ],
+    "failed": [
+      {
+        "index": 2,
+        "reason": "not_attempted"
+      }
+    ]
+  },
+  "expect": {
+    "status": 200,
+    "headers": {},
+    "requestCount": 3,
+    "outcome": "ambiguous_failure",
+    "sentIndexes": [],
+    "failedIndexes": [],
+    "retryable": false
+  }
+}

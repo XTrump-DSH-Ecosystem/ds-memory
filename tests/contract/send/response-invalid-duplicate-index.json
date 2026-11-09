@@ -1,0 +1,28 @@
+{
+  "name": "send-response-invalid-duplicate-index",
+  "kind": "send-response",
+  "description": "failed 中 index 重复，应判非法响应",
+  "payload": {
+    "ok": false,
+    "sent": [],
+    "failed": [
+      {
+        "index": 0,
+        "reason": "rate_limited"
+      },
+      {
+        "index": 0,
+        "reason": "not_attempted"
+      }
+    ]
+  },
+  "expect": {
+    "status": 200,
+    "headers": {},
+    "requestCount": 2,
+    "outcome": "ambiguous_failure",
+    "sentIndexes": [],
+    "failedIndexes": [],
+    "retryable": false
+  }
+}

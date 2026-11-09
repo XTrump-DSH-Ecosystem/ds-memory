@@ -1,0 +1,32 @@
+{
+  "name": "send-response-all-success",
+  "kind": "send-response",
+  "description": "3 条全部成功",
+  "payload": {
+    "ok": true,
+    "sent": [
+      {
+        "messageId": "7001"
+      },
+      {
+        "messageId": "7002"
+      },
+      {
+        "messageId": "7003"
+      }
+    ]
+  },
+  "expect": {
+    "status": 200,
+    "headers": {},
+    "requestCount": 3,
+    "outcome": "all_sent",
+    "sentIndexes": [
+      0,
+      1,
+      2
+    ],
+    "failedIndexes": [],
+    "retryable": false
+  }
+}

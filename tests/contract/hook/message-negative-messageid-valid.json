@@ -1,0 +1,31 @@
+{
+  "name": "hook-message-negative-messageid-valid",
+  "kind": "hook-request",
+  "description": "负 messageId 保留符号；eventId 与 messageId 可含负值",
+  "payload": {
+    "v": 1,
+    "eventId": "evt:10001:message:-1366588956",
+    "at": 1750000002000,
+    "source": {
+      "kind": "private",
+      "id": "123456789",
+      "groupName": null
+    },
+    "sender": {
+      "qqId": "987654321",
+      "nickname": "小鲸鱼他爹"
+    },
+    "messageId": "-1366588956",
+    "text": "负 messageId 也要保留",
+    "isAtBot": false,
+    "quote": null,
+    "media": [],
+    "poke": null
+  },
+  "expect": {
+    "status": 200,
+    "body": {
+      "ok": true
+    }
+  }
+}

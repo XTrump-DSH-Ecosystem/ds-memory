@@ -1,0 +1,14 @@
+{
+  "name": "endpoint-invalid-missing-fields",
+  "kind": "endpoint",
+  "description": "缺少 port/pid/startedAt/instanceId，应判非法",
+  "payload": {
+    "v": 1,
+    "name": "ds-memory",
+    "host": "127.0.0.1"
+  },
+  "expect": {
+    "valid": false,
+    "reason": "missing_fields"
+  }
+}

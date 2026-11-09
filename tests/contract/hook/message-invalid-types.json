@@ -1,0 +1,28 @@
+{
+  "name": "hook-message-invalid-types",
+  "kind": "hook-request",
+  "description": "字段类型错误（eventId/text/isAtBot 非正确类型），应 400",
+  "payload": {
+    "v": 1,
+    "eventId": 3589,
+    "at": "1750000000000",
+    "source": {
+      "kind": "private",
+      "id": 123456789,
+      "groupName": null
+    },
+    "sender": {
+      "qqId": 987654321,
+      "nickname": "小鲸鱼他爹"
+    },
+    "messageId": "3592",
+    "text": 123,
+    "isAtBot": "yes",
+    "quote": null,
+    "media": [],
+    "poke": null
+  },
+  "expect": {
+    "status": 400
+  }
+}
